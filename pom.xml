@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- ───── Model version ───── -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ───── Parent configuration for Spring Boot ───── -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.7</version>
+        <relativePath/>
+    </parent>
+
+    <!-- ───── Project coordinates and metadata ───── -->
+    <groupId>com.greadle</groupId>
+    <artifactId>simple</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>simple</name>
+    <description>The Simple platform.</description>
+    <url>https://simple.greadle.com</url>
+
+    <!-- ─────  Licensing information  ───── -->
+    <licenses>
+        <license>
+            <name>Proprietary License, Version 1.0</name>
+            <url>https://simple.greadle.com/licenses/LICENSE-1.0</url>
+            <distribution>repo</distribution>
+            <comments>Internal-use license. Redistribution requires Greadle's approval.</comments>
+        </license>
+    </licenses>
+
+    <!-- ─────  Developer information  ───── -->
+    <developers>
+        <developer>
+            <id>Greadle</id>
+            <name>Greadle S.A.</name>
+            <email>ask@greadle.com</email>
+            <organization>Greadle S.A.</organization>
+            <organizationUrl>https://www.greadle.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <!-- ───── Source control management (SCM) information ───── -->
+    <scm>
+        <connection>scm:git:https://github.com/greadles/simple.git</connection>
+        <developerConnection>scm:git:git@github.com:greadles/simple.git</developerConnection>
+        <url>https://github.com/greadles/simple</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- ─────  Project properties  ───── -->
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-modulith.version>1.4.4</spring-modulith.version>
+        <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
+    </properties>
+
+    <!-- ─────  Project dependencies  ───── -->
+    <dependencies>
+        <!-- ─────  Spring Boot Starters  ───── -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- ───── Spring Modulith Core ───── -->
+        <dependency>
+            <groupId>org.springframework.modulith</groupId>
+            <artifactId>spring-modulith-starter-core</artifactId>
+        </dependency>
+
+        <!-- ───── Development tools ───── -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- ───── Testing dependencies ───── -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.modulith</groupId>
+            <artifactId>spring-modulith-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ───── Dependency management ───── -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- ─────   Import Spring Modulith BOM ───── -->
+            <dependency>
+                <groupId>org.springframework.modulith</groupId>
+                <artifactId>spring-modulith-bom</artifactId>
+                <version>${spring-modulith.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- ───── Build configuration  ───── -->
+    <build>
+        <plugins>
+            <!-- ───── Maven Compiler Plugin ───── -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- ───── Spring Boot Maven Plugin ───── -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.greadle.simple.Main</mainClass>
+                    <layers>
+                        <enabled>true</enabled>
+                    </layers>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <!-- ───── Final artifact name ───── -->
+        <finalName>${project.artifactId}-${project.version}</finalName>
+    </build>
+</project>

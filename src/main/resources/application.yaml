@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: ${APP_NAME:Simple}
+    version: ${APP_VERSION:0.0.1-SNAPSHOT}
+  profiles:
+    active: ${PROFILES_ACTIVE:default}
+  mvc:
+    problemdetails:
+      enabled: ${PROBLEM_DETAILS_ENABLED:true}
+  main:
+    banner-mode: ${SPRING_MAIN_BANNER_MODE:console}
+  devtools:
+    restart:
+      additional-exclude: ${DEVTOOLS_RESTART_ADDITIONAL_EXCLUDE:"**/*.class"}
+    add-properties: ${DEVTOOLS_ADD_PROPERTIES:false}
+
+server:
+  port: ${PORT:8888}
+  servlet:
+    context-path: ${CONTEXT_PATH:/api}
+  shutdown: ${SHUTDOWN:graceful}
+  forward-headers-strategy: ${FORWARD_HEADERS_STRATEGY:framework}
+  http2:
+    enabled: ${HTTP2_ENABLED:true}
+  compression:
+    enabled: ${COMPRESSION_ENABLED:true}
+    mime-types:
+      - application/json
+      - application/xml
+      - text/html
+      - text/plain
+      - text/css
+      - application/javascript
+    min-response-size: ${COMPRESSION_MIN_RESPONSE_SIZE:1024}
+  ssl:
+    enabled: ${SSL_ENABLED:false}
+    key-store: ${SSL_KEY_STORE:classpath:certs/keystore.p12}
+    key-store-password: ${SSL_KEY_STORE_PASSWORD:tHzEumqY50fC}
+    key-password: ${SSL_KEY_PASSWORD:tHzEumqY50fC}
+    key-store-type: ${SSL_KEY_STORE_TYPE:PKCS12}
+    key-alias: ${SSL_KEY_ALIAS:tomcat}
+  error:
+    include-message: ${ERROR_INCLUDE_MESSAGE:always}
+    include-binding-errors: ${ERROR_INCLUDE_BINDING_ERRORS:always}
+    include-stacktrace: ${ERROR_INCLUDE_STACKTRACE:never}
+    whitelabel:
+      enabled: ${ERROR_WHITELABEL_ENABLED:false}
+
+logging:
+  level:
+    root: ${LOG_LEVEL_ROOT:INFO}
+    org.springframework: ${LOG_LEVEL_SPRING:INFO}
+    com.greadle.simple: ${LOG_LEVEL_APP:INFO}
+  file:
+    name: ${LOG_FILE_NAME:logs/simple.log}
+  logback:
+    rollingpolicy:
+      max-file-size: ${LOG_MAX_FILE_SIZE:10MB}
+      max-history: ${LOG_MAX_HISTORY:30}
+      total-size-cap: ${LOG_TOTAL_SIZE_CAP:100MB}
